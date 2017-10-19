@@ -6646,6 +6646,47 @@ void MSP430TargetCodeGenInfo::setTargetAttributes(
 }
 
 //===----------------------------------------------------------------------===//
+// STM8 ABI Implementation
+//===----------------------------------------------------------------------===//
+
+namespace {
+
+class STM8TargetCodeGenInfo : public TargetCodeGenInfo {
+public:
+    STM8TargetCodeGenInfo(CodeGenTypes &CGT)
+        : TargetCodeGenInfo(new DefaultABIInfo(CGT)) {}
+//    void setTargetAttributes(const Decl *D, llvm::GlobalValue *GV,
+//                             CodeGen::CodeGenModule &M,
+//                             ForDefinition_t IsForDefinition) const override;
+};
+
+}
+
+//void STM8TargetCodeGenInfo::setTargetAttributes(
+//        const Decl *D, llvm::GlobalValue *GV, CodeGen::CodeGenModule &M,
+//        ForDefinition_t IsForDefinition) const {
+//    if (!IsForDefinition)
+//        return;
+//    if (const FunctionDecl *FD = dyn_cast_or_null<FunctionDecl>(D)) {
+//        if (const STM8InterruptAttr *attr = FD->getAttr<STM8InterruptAttr>()) {
+//            // Handle 'interrupt' attribute:
+//            llvm::Function *F = cast<llvm::Function>(GV);
+
+//            // Step 1: Set ISR calling convention.
+//            F->setCallingConv(llvm::CallingConv::STM8_INTR);
+
+//            // Step 2: Add attributes goodness.
+//            F->addFnAttr(llvm::Attribute::NoInline);
+
+//            // Step 3: Emit ISR vector alias.
+//            unsigned Num = attr->getNumber() / 2;
+//            llvm::GlobalAlias::create(llvm::Function::ExternalLinkage,
+//                                      "__isr_" + Twine(Num), F);
+//        }
+//    }
+//}
+
+//===----------------------------------------------------------------------===//
 // MIPS ABI Implementation.  This works for both little-endian and
 // big-endian variants.
 //===----------------------------------------------------------------------===//

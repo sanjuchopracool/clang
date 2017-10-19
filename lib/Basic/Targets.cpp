@@ -23,6 +23,7 @@
 #include "Targets/Lanai.h"
 #include "Targets/Le64.h"
 #include "Targets/MSP430.h"
+#include "Targets/STM8.h"
 #include "Targets/Mips.h"
 #include "Targets/NVPTX.h"
 #include "Targets/Nios2.h"
@@ -233,6 +234,9 @@ TargetInfo *AllocateTarget(const llvm::Triple &Triple,
 
   case llvm::Triple::msp430:
     return new MSP430TargetInfo(Triple, Opts);
+
+  case llvm::Triple::stm8:
+    return new STM8TargetInfo(Triple, Opts);
 
   case llvm::Triple::nios2:
     return new LinuxTargetInfo<Nios2TargetInfo>(Triple, Opts);
