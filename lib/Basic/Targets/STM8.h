@@ -28,21 +28,35 @@ class LLVM_LIBRARY_VISIBILITY STM8TargetInfo : public TargetInfo {
 public:
   STM8TargetInfo(const llvm::Triple &Triple, const TargetOptions &)
       : TargetInfo(Triple) {
-    TLSSupported = false;
-    IntWidth = 16;
-    IntAlign = 16;
-    LongWidth = 32;
-    LongLongWidth = 64;
-    LongAlign = LongLongAlign = 16;
-    PointerWidth = 16;
-    PointerAlign = 16;
-    SuitableAlign = 16;
-    SizeType = UnsignedInt;
-    IntMaxType = SignedLongLong;
-    IntPtrType = SignedInt;
-    PtrDiffType = SignedInt;
-    SigAtomicType = SignedLong;
-    resetDataLayout("e-m:e-p:16:16-i32:16-i64:16-f32:16-f64:16-a:8-n8:16-S16");
+      TLSSupported = false;
+      PointerWidth = 16;
+      PointerAlign = 8;
+      IntWidth = 16;
+      IntAlign = 8;
+      LongWidth = 32;
+      LongAlign = 8;
+      LongLongWidth = 64;
+      LongLongAlign = 8;
+      SuitableAlign = 8;
+      DefaultAlignForAttributeAligned = 8;
+      HalfWidth = 16;
+      HalfAlign = 8;
+      FloatWidth = 32;
+      FloatAlign = 8;
+      DoubleWidth = 32;
+      DoubleAlign = 8;
+      DoubleFormat = &llvm::APFloat::IEEEsingle();
+      LongDoubleWidth = 32;
+      LongDoubleAlign = 8;
+      LongDoubleFormat = &llvm::APFloat::IEEEsingle();
+      SizeType = UnsignedInt;
+      PtrDiffType = SignedInt;
+      IntPtrType = SignedInt;
+      Char16Type = UnsignedInt;
+      WIntType = SignedInt;
+      Char32Type = UnsignedLong;
+      SigAtomicType = SignedChar;
+      resetDataLayout("E-p:16:8-i8:8-i16:8-i32:8-i64:8-f32:8-f64:8-n8-a:8");
   }
   void getTargetDefines(const LangOptions &Opts,
                         MacroBuilder &Builder) const override;
